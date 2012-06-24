@@ -1,0 +1,31 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Tests</title>
+
+    <script src="../libs/jquery/jquery.min.js"></script>
+    <script src="../libs/underscore/underscore.min.js"></script>
+    <script src="../libs/backbone/backbone.min.js"></script>
+
+    <script src="../backbone-inheritance.js"></script>
+
+    <link rel="stylesheet" href="libs/mocha/mocha.css">
+    <script src="libs/sinon/sinon.js"></script>
+    <script src="libs/chai/chai.js"></script>
+    <script src="libs/sinon-chai/sinon-chai.js"></script>
+    <script src="libs/chai-jquery/chai-jquery.js"></script>
+    <script src="libs/mocha/mocha.js"></script>
+    <script>
+        window.mocha.setup({ ui : 'qunit', ignoreLeaks : true });
+        window.expect = window.chai.expect;
+        window.chai.use(window.sinonChai);
+    </script>
+
+    <script src="spec.js"></script>
+</head>
+<body>
+    <div id="mocha"></div>
+    <script>$(function () { window.mocha.run() });</script>
+</body>
+</html>
