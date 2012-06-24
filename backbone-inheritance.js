@@ -1,6 +1,9 @@
-/*global Backbone, _ */
+// Backbone Inheritance Plugin
+// by Ian Storm Taylor - ianstormtaylor.com
+// https://github.com/ianstormtaylor/backbone-inheritance
 
 ;(function (Backbone) {
+/*global Backbone, _ */
 
 // Augmenting `extend` to add `this.super` as a reference to the parent class.
 var _extend = Backbone.View.extend;
