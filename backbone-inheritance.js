@@ -2,8 +2,7 @@
 
 ;(function (Backbone) {
 
-// Patching the extend call to add `this.super` as a reference to parent class.
-// TODO: use the one in backbone `__super__` instead.
+// Augmenting `extend` to add `this.super` as a reference to the parent class.
 var _extend = Backbone.View.extend;
 Backbone.View.extend = function (protoProps, classProps) {
   var child = _extend.apply(this, arguments);
@@ -14,7 +13,7 @@ Backbone.View.extend = function (protoProps, classProps) {
 var _View = Backbone.View;
 Backbone.View = _View.extend({
 
-  // Augmented `_configure` to inherit properties.
+  // Augmented `_configure` to inherit and combine, instead of overwriting properties up the prototype chain.
   _configure : function (options) {
     this._inheritProperties(this.inheritableProperties || []);
     _View.prototype._configure.apply(this, arguments);
@@ -32,13 +31,11 @@ Backbone.View = _View.extend({
         if (_.isFunction(childProp)) childProp = childProp();
         if (_.isFunction(parentProp)) parentProp = parentProp();
 
-        // String
+        // Do the inheriting.
         if (typeof childProp === 'string')
           childProp = childProp + ' ' + parentProp;
-        // Array
         else if (_.isArray(childProp) && _.isArray(parentProp))
           childProp = _.union(childProp, parentProp);
-        // Object
         else if (_.isObject(childProp) && _.isObject(parentProp))
           _.defaults(childProp, parentProp);
 
