@@ -1,1 +1,69 @@
-Something.
+# Backbone Inheritance
+
+A mixin for Backbone that lets instances inherit properties up the prototype chain by combining instead of overwriting. So arrays will be unioned, objects extended, and strings concatenated. You can set which individual properties you'd like to inherit.
+
+### Calling the mixin
+
+Backbone Inheritance will be available under `Backbone.mixin.inheritance` when not using AMD, or it will just return the mixin itself if you are using AMD.
+
+To use the Backbone Inheritance mixin, you need to mix it into whichever Backbone class you'd like to have inheritance:
+
+    Backbone.mixin.inheritance.call(Backbone.View);
+
+More likely, you'll want to mix it into your BaseView:
+
+    Backbone.mixin.inheritance.call(BaseView);
+
+You can also pass in the properties to inherit up front:
+
+    Backbone.mixin.inheritance.call(BaseView, ['className', 'options']);
+
+Or you can define the properties you want to inherit when you extend the view:
+
+    var BaseView = Backbone.View.extend({
+        inheritableProperties = ['className', 'options'];
+    });
+    Backbone.mixin.inheritance.call(BaseView);
+
+Once you apply the mixin, your instances will inherit properties up the prototype chain.
+
+### A quick example
+
+If you have `Cat` and `AngryCat`, if you only wanted to add a single option to `this.options` you'd have to re-copy all of the previously defined options as well:
+
+    var Cat = Backbone.View.extend({
+        options : {
+            furColor : 'black',
+            age      : 4,
+            name     : 'Felix',
+            weight   : 8.3
+
+        }
+    });
+
+    var AngryCat = Cat.extend({
+        options : {
+            emotionalState : 'angry!', // The new one!
+            furColor : 'black', 
+            age      : 4,
+            name     : 'Felix',
+            weight   : 8.3
+        }
+    });
+
+But with the Backbone Inheritance mixin, the other properties are automatically inherited for you:
+
+    var Cat = Backbone.View.extend({
+        options : {
+            furColor : 'black',
+            age      : 4,
+            name     : 'Felix',
+            weight   : 8.3
+        }
+    });
+
+    var AngryCat = Cat.extend({
+        options : {
+            emotionalState : 'angry!' // That's it!
+        }
+    });
