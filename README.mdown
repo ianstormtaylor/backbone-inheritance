@@ -18,10 +18,10 @@ You can also pass in the properties to inherit up front:
 
     Backbone.mixin.inheritance.call(BaseView, ['className', 'options']);
 
-Or you can define the properties you want to inherit when you extend the view:
+Or you can define the properties you want to inherit in `inherits` when you extend the view:
 
     var BaseView = Backbone.View.extend({
-        inheritableProperties : ['className', 'options'];
+        inherits : ['className', 'options'];
     });
     Backbone.mixin.inheritance.call(BaseView);
 
