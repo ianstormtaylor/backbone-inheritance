@@ -2,12 +2,11 @@
 
 (function () {
 
-  var Grandparent = Backbone.View.extend({
-    inheritableProperties : [
-      'className',
-      'options',
-      'states'
-    ],
+  var Human = Backbone.View.extend();
+
+  Backbone.mixin.inheritance.call(Human, ['className', 'options', 'states']);
+
+  var Grandparent = Human.extend({
     className : 'agatha',
     options : {
       age  : 'old',
@@ -39,9 +38,9 @@
   });
 
   test('instances should have a reference to their super', function () {
-    expect(this.grandparent.super).to.exist;
-    expect(this.parent.super).to.exist;
-    expect(this.child.super).to.exist;
+    expect(this.grandparent.__super__).to.exist;
+    expect(this.parent.__super__).to.exist;
+    expect(this.child.__super__).to.exist;
   });
 
   test('should inherit strings by concatenation with space', function () {
