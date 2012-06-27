@@ -9,7 +9,7 @@
   /*global define */
   if (typeof define === 'function' && define.amd) {
     define(['underscore'], function(_) {
-      factory(root, _);
+      return factory(root, _);
     });
   }
   // Browser globals
