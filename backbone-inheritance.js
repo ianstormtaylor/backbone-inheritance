@@ -31,11 +31,11 @@
       return child;
     };
 
-    // Augmented `_configure` to call `_inherit` first.
-    var __configure = this.prototype._configure;
+    // Augmented `_configure` to call `_inherit`.
+    var _configure = this.prototype._configure;
     this.prototype._configure = function (options) {
       this._inherit(this.inherits || []);
-      return __configure.apply(this, arguments);
+      _configure.apply(this, arguments);
     };
 
     // Runs up the prototype chain and checks for the properties in `inherits`. Inherits based on type, so Strings get concatenated with a space, arrays get unioned, and objects get defaulted.
