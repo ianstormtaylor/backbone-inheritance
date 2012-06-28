@@ -2,25 +2,12 @@
 //
 //     by Ian Storm Taylor
 //     https://github.com/ianstormtaylor/backbone-inheritance
+;(function (_, Backbone) {
+  if (_ === undefined) throw new Error('Couldn\'t find Underscore');
+  if (Backbone === undefined) throw new Error('Couldn\'t find Backbone');
 
-;(function (root, factory) {
-  // Set up appropriately for the environment.
-  // AMD
-  /*global define */
-  if (typeof define === 'function' && define.amd) {
-    define(['underscore'], function(_) {
-      return factory(root, _);
-    });
-  }
-  // Browser globals
-  else {
-    if (root.Backbone === undefined) throw new Error('Couldn\'t find Backbone');
-    root.Backbone.mixin || (root.Backbone.mixin = {});
-    root.Backbone.mixin.inheritance = factory(root, root._);
-  }
-})(this, function (root, _) {
-
-  var backboneInherit = function () {
+  Backbone.mixin || (Backbone.mixin = {});
+  Backbone.mixin.inheritance = function () {
 
     // Augmenting `extend` to add `__super__` as a reference to the parent class on instances so that we can travel up the prototype chain. `__super__` shouldn't be used for any logic in the instance itself.
     var _extend = this.extend;
@@ -73,5 +60,4 @@
     this.prototype.inherits = _.union(_inherits, ['inherits']);
   };
 
-  return backboneInherit;
-});
+}(_, Backbone));
