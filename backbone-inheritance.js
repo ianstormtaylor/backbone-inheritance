@@ -20,8 +20,7 @@
   }
 })(this, function (root, _) {
 
-  var backboneInherit = function (inherits) {
-    inherits || (inherits = []);
+  var backboneInherit = function () {
 
     // Augmenting `extend` to add `__super__` as a reference to the parent class on instances so that we can travel up the prototype chain. `__super__` shouldn't be used for any logic in the instance itself.
     var _extend = this.extend;
@@ -71,7 +70,7 @@
 
     // A list of properties to inherit. The only inheritable property by default is `inherits` itself so that it's usable anywhere on the chain, but you can add to it in any extended child views.
     var _inherits = this.prototype.inherits || [];
-    this.prototype.inherits = _.union(_inherits, inherits, ['inherits']);
+    this.prototype.inherits = _.union(_inherits, ['inherits']);
   };
 
   return backboneInherit;

@@ -2,9 +2,11 @@
 
 (function () {
 
-  var Human = Backbone.View.extend();
+  var Human = Backbone.View.extend({
+    inherits : ['className', 'options', 'states']
+  });
 
-  Backbone.mixin.inheritance.call(Human, ['className', 'options', 'states']);
+  Backbone.mixin.inheritance.call(Human);
 
   var Grandparent = Human.extend({
     className : 'agatha',
