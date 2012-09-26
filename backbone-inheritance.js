@@ -39,8 +39,8 @@
           if (parentProp === undefined) continue;
 
           // Allow for inheriting functions that return values, like a Model's defaults value might.
-          if (_.isFunction(childProp)) childProp = childProp();
-          if (_.isFunction(parentProp)) parentProp = parentProp();
+          if (_.isFunction(childProp)) childProp = childProp.apply(this);
+          if (_.isFunction(parentProp)) parentProp = parentProp.apply(this);
 
           // Do the inheriting.
           if (typeof childProp === 'string')
