@@ -14,11 +14,7 @@ More likely, you'll want to mix it into your BaseView:
 
     Backbone.mixin.inheritance.call(BaseView);
 
-You can also pass in the properties to inherit up front:
-
-    Backbone.mixin.inheritance.call(BaseView, ['className', 'options']);
-
-Or you can define the properties you want to inherit in `inherits` when you extend the view:
+Then you define the properties you want to inherit in the `inherits` when you extend the view:
 
     var BaseView = Backbone.View.extend({
         inherits : ['className', 'options'];
@@ -44,10 +40,10 @@ If you have `Cat` and `AngryCat`, if you only wanted to add a single option to `
     var AngryCat = Cat.extend({
         options : {
             emotionalState : 'angry!', // The new one!
-            furColor : 'black', 
-            age      : 4,
-            name     : 'Felix',
-            weight   : 8.3
+            furColor       : 'black', 
+            age            : 4,
+            name           : 'Felix',
+            weight         : 8.3
         }
     });
 
